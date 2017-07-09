@@ -9,6 +9,8 @@ import UserType from './types/user';
 import EventType from './types/event';
 import User from '../models/user.model';
 import Event from '../models/event.model';
+import AddUserMutation from './mutations/add-user';
+import AddEventMutation from './mutations/add-event';
 
 /* eslint no-unused-expressions: 0 */
 
@@ -67,9 +69,17 @@ const RootQueryType = new GraphQLObjectType({
   }
 });
 
+const RootMutationType = new GraphQLObjectType({
+  name: 'RootMutationType',
+  fields: () => ({
+    AddUser: AddUserMutation,
+    AddEvent: AddEventMutation
+  })
+});
+
 const owambeSchema = new GraphQLSchema({
   query: RootQueryType,
-  // mutation
+  mutation: RootMutationType
 });
 
 export default owambeSchema;

@@ -49,6 +49,14 @@ export default new GraphQLObjectType({
     isPrivate: {
       type: GraphQLBoolean,
       description: 'Boolean indicating whether the event is private or not'
+    },
+    createdAt: {
+      type: GraphQLDate,
+      description: 'Date event was created in the database'
+    },
+    updatedAt: {
+      type: GraphQLDate,
+      description: 'Date event was last updated'
     }
   })
 });

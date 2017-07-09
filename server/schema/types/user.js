@@ -6,6 +6,8 @@ import {
   GraphQLNonNull
 } from 'graphql';
 
+import GrapQLDate from 'graphql-date';
+
 /* eslint global-require:0 */
 
 export default new GraphQLObjectType({
@@ -30,6 +32,16 @@ export default new GraphQLObjectType({
     isAdmin: {
       type: GraphQLBoolean,
       description: 'Boolean indicating whether the user is an admin or not'
+    },
+    createdAt: {
+      type: GrapQLDate,
+      description: 'Date event was created'
+    },
+    updatedAt: {
+      type: GrapQLDate,
+      description: 'Date event was last updated'
     }
+    // we can add an events field of type events that will be list containing the events
+    // attended by a user. This field will have its own resolve function
   }
 });
