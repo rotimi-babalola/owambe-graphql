@@ -11,6 +11,7 @@ import User from '../models/user.model';
 import Event from '../models/event.model';
 import AddUserMutation from './mutations/add-user';
 import AddEventMutation from './mutations/add-event';
+import AttendEventMutation from './mutations/attend-event';
 
 /* eslint no-unused-expressions: 0 */
 
@@ -73,7 +74,8 @@ const RootMutationType = new GraphQLObjectType({
   name: 'RootMutationType',
   fields: () => ({
     AddUser: AddUserMutation,
-    AddEvent: AddEventMutation
+    AddEvent: AddEventMutation,
+    AttendEvent: AttendEventMutation
   })
 });
 

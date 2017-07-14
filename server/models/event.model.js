@@ -57,6 +57,14 @@ EventSchema.pre('save', function (next) {
   next();
 });
 
+EventSchema.pre('save', function (next) {
+  if (new Date(this.eventDate) < new Date()) {
+    next(Error('Event date cannot be in the past'));
+  } else {
+    next();
+  }
+});
+
 EventSchema.pre('validate', function (next) {
   if (!this.eventInformation && !this.eventUrl) {
     next(Error('Events must have a physical location or an online url'));
@@ -65,6 +73,8 @@ EventSchema.pre('validate', function (next) {
   }
 });
 
+
 const Event = mongoose.model('Event', EventSchema);
+
 
 export default Event;

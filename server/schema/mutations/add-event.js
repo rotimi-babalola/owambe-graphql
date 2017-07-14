@@ -20,7 +20,6 @@ const EventInputType = new GraphQLInputObjectType({
     eventInformation: { type: EventInformationInputType },
     eventUrl: { type: GraphQLString },
     isOnline: { type: GraphQLBoolean },
-    attendees: { type: new GraphQLList(GraphQLString) },
     eventOwner: { type: new GraphQLNonNull(GraphQLID) },
     isPrivate: { type: GraphQLBoolean }
   }

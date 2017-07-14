@@ -9,6 +9,7 @@ import {
 
 import GraphQLDate from 'graphql-date';
 import UserType from './user';
+import User from '../../models/user.model';
 import EventInformationType from './event-information';
 
 export default new GraphQLObjectType({
@@ -38,14 +39,34 @@ export default new GraphQLObjectType({
       type: GraphQLBoolean,
       description: 'Boolean indicating whether the event is online or not'
     },
-    // attendees: {
-    //   type: GraphQLList(UserType),
-    //   description: 'Array of user\'s attending the event',
-    // }, // this should have it's own resolve function
-    // eventOwner: {
-    //   type: UserType,
-    //   description: 'Owner of the event'
-    // }, // this should have it's own resolve function
+    attendees: {
+      type: new GraphQLList(UserType),
+      description: 'Array of user\'s attending the event',
+      resolve(obj) {
+        return new Promise((resolve, reject) => {
+          User.find({
+            _id: {
+              $in: obj.attendees
+            }
+          }, (error, foundUsers) => {
+            if (error) reject(error);
+            else resolve(foundUsers);
+          });
+        });
+      }
+    },
+    eventOwner: {
+      type: UserType,
+      description: 'Owner of the event',
+      resolve(obj) {
+        return new Promise((resolve, reject) => {
+          User.findById(obj.eventOwner, (error, foundUser) => {
+            if (error) reject(error);
+            else resolve(foundUser);
+          });
+        });
+      }
+    },
     isPrivate: {
       type: GraphQLBoolean,
       description: 'Boolean indicating whether the event is private or not'
