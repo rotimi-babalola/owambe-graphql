@@ -5,6 +5,7 @@ import {
   GraphQLList
 } from 'graphql';
 
+// barrel imports maybe?
 import UserType from './types/user';
 import EventType from './types/event';
 import User from '../models/user.model';
@@ -12,6 +13,8 @@ import Event from '../models/event.model';
 import AddUserMutation from './mutations/add-user';
 import AddEventMutation from './mutations/add-event';
 import AttendEventMutation from './mutations/attend-event';
+import UpdateUserMutation from './mutations/update-user';
+import DeleteUserMutation from './mutations/delete-user';
 
 /* eslint no-unused-expressions: 0 */
 
@@ -75,7 +78,9 @@ const RootMutationType = new GraphQLObjectType({
   fields: () => ({
     AddUser: AddUserMutation,
     AddEvent: AddEventMutation,
-    AttendEvent: AttendEventMutation
+    AttendEvent: AttendEventMutation,
+    UpdateUser: UpdateUserMutation,
+    DeleteUser: DeleteUserMutation
   })
 });
 

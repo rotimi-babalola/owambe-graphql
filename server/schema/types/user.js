@@ -7,6 +7,7 @@ import {
 } from 'graphql';
 
 import GrapQLDate from 'graphql-date';
+import ProviderType from '../types/provider';
 
 /* eslint global-require:0 */
 
@@ -26,7 +27,7 @@ export default new GraphQLObjectType({
       description: 'User\'s email address',
     },
     provider: {
-      type: GraphQLString,
+      type: ProviderType,
       description: 'User\'s authentication provider'
     },
     isAdmin: {
