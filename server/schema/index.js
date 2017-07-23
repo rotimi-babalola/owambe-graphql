@@ -15,6 +15,7 @@ import AddEventMutation from './mutations/add-event';
 import AttendEventMutation from './mutations/attend-event';
 import UpdateUserMutation from './mutations/update-user';
 import DeleteUserMutation from './mutations/delete-user';
+import UpdateEventMutation from './mutations/update-event';
 
 /* eslint no-unused-expressions: 0 */
 
@@ -79,6 +80,7 @@ const RootMutationType = new GraphQLObjectType({
     AddUser: AddUserMutation,
     AddEvent: AddEventMutation,
     AttendEvent: AttendEventMutation,
+    UpdateEvent: UpdateEventMutation,
     UpdateUser: UpdateUserMutation,
     DeleteUser: DeleteUserMutation
   })
