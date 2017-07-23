@@ -22,14 +22,14 @@ const UpdateEventType = new GraphQLInputObjectType({
     eventUrl: { type: GraphQLString },
     eventOwner: { type: GraphQLString },
     isPrivate: { type: GraphQLBoolean },
-  }
+  },
 });
 
 export default {
   type: EventType,
   args: {
     eventId: { type: new GraphQLNonNull(GraphQLString) },
-    fieldsToUpdate: { type: new GraphQLNonNull(UpdateEventType) }
+    fieldsToUpdate: { type: new GraphQLNonNull(UpdateEventType) },
   },
   resolve(obj, { eventId, fieldsToUpdate }) {
     return new Promise((resolve, reject) => {
@@ -60,5 +60,5 @@ export default {
         });
       }
     });
-  }
+  },
 };

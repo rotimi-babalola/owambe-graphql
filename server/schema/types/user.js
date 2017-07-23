@@ -3,13 +3,14 @@ import {
   GraphQLBoolean,
   GraphQLObjectType,
   GraphQLID,
-  GraphQLNonNull
+  GraphQLNonNull,
+  GraphQLList,
 } from 'graphql';
 
 import GrapQLDate from 'graphql-date';
 import ProviderType from '../types/provider';
-
-/* eslint global-require:0 */
+import EventType from '../types/event';
+import Event from '../../models/event.model';
 
 export default new GraphQLObjectType({
   name: 'UserType',
@@ -28,21 +29,31 @@ export default new GraphQLObjectType({
     },
     provider: {
       type: ProviderType,
-      description: 'User\'s authentication provider'
+      description: 'User\'s authentication provider',
     },
     isAdmin: {
       type: GraphQLBoolean,
-      description: 'Boolean indicating whether the user is an admin or not'
+      description: 'Boolean indicating whether the user is an admin or not',
     },
     createdAt: {
       type: GrapQLDate,
-      description: 'Date event was created'
+      description: 'Date event was created',
     },
     updatedAt: {
       type: GrapQLDate,
-      description: 'Date event was last updated'
-    }
-    // we can add an events field of type events that will be list containing the events
-    // attended by a user. This field will have its own resolve function
-  }
+      description: 'Date event was last updated',
+    },
+    eventsAttended: {
+      type: new GraphQLList(EventType),
+      description: 'Events user has attended',
+      resolve(obj) {
+        return new Promise((resolve, reject) => {
+          Event.find({ attendees: obj.id }, (error, foundEvents) => {
+            if (error) reject(error);
+            else resolve(foundEvents);
+          });
+        });
+      },
+    },
+  },
 });

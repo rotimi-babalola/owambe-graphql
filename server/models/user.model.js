@@ -14,31 +14,31 @@ const authTypes = ['twitter', 'facebook', 'google'];
 const UserSchema = new Schema({
   username: {
     type: String,
-    required: true
+    required: true,
   },
   email: {
     type: String,
     validate: [{ validator: value => isEmail(value), msg: 'Invalid email.' }],
     unique: true,
-    required: true
+    required: true,
   },
   password: {
     type: String,
-    required: true
+    required: true,
   },
   provider: {
     type: String,
-    enum: ['twitter', 'facebook', 'google', 'local']
+    enum: ['twitter', 'facebook', 'google', 'local'],
   },
   isAdmin: {
     type: Boolean,
-    default: false
+    default: false,
   },
   twitter: {},
   facebook: {},
-  google: {}
+  google: {},
 }, {
-  timestamps: true
+  timestamps: true,
 });
 
 // I am using ES5 because of the lexical this
@@ -114,7 +114,7 @@ UserSchema.methods = {
       return '';
     }
     return bcrypt.hashSync(password, bcrypt.genSaltSync(10));
-  }
+  },
 };
 
 const User = mongoose.model('User', UserSchema);

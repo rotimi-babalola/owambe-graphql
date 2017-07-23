@@ -4,7 +4,7 @@ import {
   GraphQLObjectType,
   GraphQLNonNull,
   GraphQLList,
-  GraphQLID
+  GraphQLID,
 } from 'graphql';
 
 import GraphQLDate from 'graphql-date';
@@ -21,23 +21,23 @@ export default new GraphQLObjectType({
     },
     eventName: {
       type: new GraphQLNonNull(GraphQLString),
-      description: 'Name of event'
+      description: 'Name of event',
     },
     eventDate: {
       type: new GraphQLNonNull(GraphQLDate),
-      description: 'Date of the event'
+      description: 'Date of the event',
     },
     eventInformation: {
       type: EventInformationType,
-      resolve: obj => obj.eventInformation
+      resolve: obj => obj.eventInformation,
     },
     eventUrl: {
       type: GraphQLString,
-      description: 'Url of the event'
+      description: 'Url of the event',
     },
     isOnline: {
       type: GraphQLBoolean,
-      description: 'Boolean indicating whether the event is online or not'
+      description: 'Boolean indicating whether the event is online or not',
     },
     attendees: {
       type: new GraphQLList(UserType),
@@ -46,14 +46,14 @@ export default new GraphQLObjectType({
         return new Promise((resolve, reject) => {
           User.find({
             _id: {
-              $in: obj.attendees
-            }
+              $in: obj.attendees,
+            },
           }, (error, foundUsers) => {
             if (error) reject(error);
             else resolve(foundUsers);
           });
         });
-      }
+      },
     },
     eventOwner: {
       type: UserType,
@@ -65,19 +65,19 @@ export default new GraphQLObjectType({
             else resolve(foundUser);
           });
         });
-      }
+      },
     },
     isPrivate: {
       type: GraphQLBoolean,
-      description: 'Boolean indicating whether the event is private or not'
+      description: 'Boolean indicating whether the event is private or not',
     },
     createdAt: {
       type: GraphQLDate,
-      description: 'Date event was created in the database'
+      description: 'Date event was created in the database',
     },
     updatedAt: {
       type: GraphQLDate,
-      description: 'Date event was last updated'
-    }
-  })
+      description: 'Date event was last updated',
+    },
+  }),
 });

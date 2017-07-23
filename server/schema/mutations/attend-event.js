@@ -1,6 +1,6 @@
 import {
   GraphQLNonNull,
-  GraphQLString
+  GraphQLString,
 } from 'graphql';
 
 import Event from '../../models/event.model';
@@ -10,7 +10,7 @@ export default {
   type: EventType,
   args: {
     eventId: { type: new GraphQLNonNull(GraphQLString) },
-    userId: { type: new GraphQLNonNull(GraphQLString) }
+    userId: { type: new GraphQLNonNull(GraphQLString) },
   },
   resolve(obj, { eventId, userId }) {
     return new Promise((resolve, reject) => {
@@ -28,5 +28,5 @@ export default {
         }
       });
     });
-  }
+  },
 };

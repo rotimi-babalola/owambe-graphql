@@ -1,6 +1,6 @@
 import {
   GraphQLString,
-  GraphQLInputObjectType
+  GraphQLInputObjectType,
 } from 'graphql';
 
 export default new GraphQLInputObjectType({
@@ -11,5 +11,5 @@ export default new GraphQLInputObjectType({
     city: { type: GraphQLString },
     imageUrl: { type: GraphQLString },
   },
-  description: 'Information about the event'
+  description: 'Information about the event',
 });

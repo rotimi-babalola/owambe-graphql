@@ -2,7 +2,7 @@ import {
   GraphQLInputObjectType,
   GraphQLNonNull,
   GraphQLBoolean,
-  GraphQLString
+  GraphQLString,
 } from 'graphql';
 
 import ProviderType from '../types/provider';
@@ -16,14 +16,14 @@ const UserInputType = new GraphQLInputObjectType({
     email: { type: new GraphQLNonNull(GraphQLString) },
     password: { type: new GraphQLNonNull(GraphQLString) },
     provider: { type: ProviderType },
-    isAdmin: { type: GraphQLBoolean }
-  }
+    isAdmin: { type: GraphQLBoolean },
+  },
 });
 
 export default {
   type: UserType,
   args: {
-    input: { type: new GraphQLNonNull(UserInputType) }
+    input: { type: new GraphQLNonNull(UserInputType) },
   },
   resolve(obj, { input }) {
     const newUser = new User(input);
@@ -34,5 +34,5 @@ export default {
         else resolve(newUser);
       });
     });
-  }
+  },
 };

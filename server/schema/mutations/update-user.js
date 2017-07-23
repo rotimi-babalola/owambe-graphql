@@ -2,7 +2,7 @@ import {
   GraphQLInputObjectType,
   GraphQLBoolean,
   GraphQLNonNull,
-  GraphQLString
+  GraphQLString,
 } from 'graphql';
 
 import UserType from '../types/user';
@@ -16,15 +16,15 @@ const UpdateUserType = new GraphQLInputObjectType({
     email: { type: GraphQLString },
     password: { type: GraphQLString },
     provider: { type: ProviderType },
-    isAdmin: { type: GraphQLBoolean }
-  }
+    isAdmin: { type: GraphQLBoolean },
+  },
 });
 
 export default {
   type: UserType,
   args: {
     userId: { type: new GraphQLNonNull(GraphQLString) },
-    fieldsToUpdate: { type: new GraphQLNonNull(UpdateUserType) }
+    fieldsToUpdate: { type: new GraphQLNonNull(UpdateUserType) },
   },
   resolve(obj, { userId, fieldsToUpdate }) {
     return new Promise((resolve, reject) => {
@@ -33,5 +33,5 @@ export default {
         else resolve(updatedUser);
       });
     });
-  }
+  },
 };

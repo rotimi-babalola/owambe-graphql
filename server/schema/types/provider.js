@@ -1,5 +1,5 @@
 import {
-  GraphQLEnumType
+  GraphQLEnumType,
 } from 'graphql';
 
 export default new GraphQLEnumType({
@@ -8,6 +8,6 @@ export default new GraphQLEnumType({
     TWITTER: { value: 'twitter' },
     FACEBOOK: { value: 'facebook' },
     GOOGLE: { value: 'google' },
-    LOCAL: { value: 'local' }
-  }
+    LOCAL: { value: 'local' },
+  },
 });

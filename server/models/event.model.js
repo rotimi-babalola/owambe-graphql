@@ -13,40 +13,40 @@ const EventSchema = new Schema({
     type: String,
     unique: true,
     required: true,
-    trim: true
+    trim: true,
   },
   eventDate: {
     type: Date,
-    required: true
+    required: true,
   },
   eventInformation: {
     type: {
       address: String,
       state: String,
       city: String,
-      imageUrl: String
-    }
+      imageUrl: String,
+    },
   },
   eventUrl: {
     type: String,
-    validate: [{ validator: value => isURL(value), msg: 'Invalid url.' }]
+    validate: [{ validator: value => isURL(value), msg: 'Invalid url.' }],
   },
   isOnline: {
     type: Boolean,
-    default: false
+    default: false,
   },
   attendees: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   eventOwner: {
     type: Schema.Types.ObjectId,
     ref: 'User',
-    required: true
+    required: true,
   },
   isPrivate: {
     type: Boolean,
-    default: false
-  }
+    default: false,
+  },
 }, {
-  timestamps: true
+  timestamps: true,
 });
 
 // make event an online event if it has a url
