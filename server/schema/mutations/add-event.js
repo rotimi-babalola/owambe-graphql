@@ -3,7 +3,7 @@ import {
   GraphQLNonNull,
   GraphQLString,
   GraphQLBoolean,
-  GraphQLID
+  GraphQLID,
 } from 'graphql';
 
 import GraphQLDate from 'graphql-date';
@@ -20,14 +20,14 @@ const EventInputType = new GraphQLInputObjectType({
     eventUrl: { type: GraphQLString },
     isOnline: { type: GraphQLBoolean },
     eventOwner: { type: new GraphQLNonNull(GraphQLID) },
-    isPrivate: { type: GraphQLBoolean }
-  }
+    isPrivate: { type: GraphQLBoolean },
+  },
 });
 
 export default {
   type: EventType,
   args: {
-    input: { type: new GraphQLNonNull(EventInputType) }
+    input: { type: new GraphQLNonNull(EventInputType) },
   },
   resolve(obj, { input }) {
     const newEvent = new Event(input);
@@ -37,5 +37,5 @@ export default {
         else resolve(newEvent);
       });
     });
-  }
+  },
 };

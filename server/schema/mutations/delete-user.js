@@ -1,6 +1,6 @@
 import {
   GraphQLString,
-  GraphQLNonNull
+  GraphQLNonNull,
 } from 'graphql';
 
 import User from '../../models/user.model';
@@ -8,7 +8,7 @@ import User from '../../models/user.model';
 export default {
   type: GraphQLString,
   args: {
-    userId: { type: new GraphQLNonNull(GraphQLString) }
+    userId: { type: new GraphQLNonNull(GraphQLString) },
   },
   resolve(obj, { userId }) {
     return new Promise((resolve, reject) => {
@@ -17,5 +17,5 @@ export default {
         else resolve('User successfully deleted');
       });
     });
-  }
+  },
 };
